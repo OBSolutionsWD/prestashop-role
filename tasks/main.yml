@@ -1,0 +1,11 @@
+---
+
+- name: PrestaShop | Install
+  include: install.yml
+  tags:
+    - install
+
+- name: PrestaShop | Configure
+  include: config.yml
+  tags:
+    - configure

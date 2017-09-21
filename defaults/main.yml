@@ -1,0 +1,18 @@
+---
+## General
+
+prestashop_version: 1.7.2.2
+
+prestashop_domain: localhost
+
+prestashop_user: prestashop
+prestashop_group: prestashop
+
+## PATHS
+prestashop_install_path: /var/www/prestashop
+
+## DB
+prestashop_db_server: localhost
+prestashop_db_name: prestashop
+prestashop_db_user: prestashop
+prestashop_db_pwd: prestashoppw

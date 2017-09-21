@@ -1,0 +1,20 @@
+---
+prestashop_required_libs:
+  - unzip
+  - php7.0
+  - php7.0-cgi
+  - php7.0-cli
+  - php7.0-curl
+  - php7.0-fpm
+  - php7.0-gd
+  - php7.0-intl
+  - php7.0-mysql
+  - php7.0-xml
+  - php7.0-zip
+
+prestashop_version_build_name: prestashop_{{ prestashop_version }}
+prestashop_package: "{{ prestashop_version_build_name }}.zip"
+prestashop_url: "https://download.prestashop.com/download/releases/{{ prestashop_package }}"
+
+prestashop_install_script_path: "{{ prestashop_install_path }}/install"
+prestashop_install_script_file: index_cli.php

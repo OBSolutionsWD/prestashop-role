@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  pre_tasks:
+     - name: Installing net-tools #(netstat is required to execute unit tests)
+       apt:
+        name: net-tools
+        state: present
+  roles:
+    - role: mysql
+    - role: nginx
+    - role: prestashop-role

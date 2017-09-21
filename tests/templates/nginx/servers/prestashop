@@ -1,0 +1,28 @@
+server {
+  listen {{ prestashop_port }};
+  server_name {{ prestashop_domain }};
+
+  error_log {{ prestashop_error_log_path }};
+  access_log {{ prestashop_access_log_path }};
+
+  root {{ prestashop_install_path }};
+
+  location / {
+    index index.html index.htm index.php;
+  }
+
+  location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+
+  # Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+  location ~ /\. {
+    deny all;
+    access_log off;
+    log_not_found off;
+  }
+}

@@ -1,0 +1,15 @@
+---
+
+dependencies: []
+galaxy_info:
+  author: dortegau
+  description: Prestashop 1.7.x for Debian.
+  license: "Apache 2"
+  min_ansible_version: 2.2
+  platforms:
+    - name: Debian
+      versions:
+        - strecth
+  galaxy_tags:
+    - prestashop
+allow_duplicates: yes

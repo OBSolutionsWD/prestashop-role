@@ -1,0 +1,7 @@
+- src: idealista.mysql-role
+  version: 1.2.0
+  name: mysql
+
+- src: idealista.nginx-role
+  version: 1.5.0
+  name: nginx

@@ -1,0 +1,23 @@
+---
+
+prestashop_user: "{{ nginx_user }}"
+prestashop_group: "{{ nginx_group }}"
+
+prestashop_domain: prestashop.vm
+prestashop_port: 80
+
+## MYSQL
+mysql_databases:
+   - name: "{{ prestashop_db_name }}"
+     encoding: utf8
+
+mysql_users:
+   - name: "{{ prestashop_db_name }}"
+     host: "{{ prestashop_db_server }}"
+     password: "{{ prestashop_db_pwd }}"
+     priv:
+        - "{{ prestashop_db_name }}.*:ALL"
+
+# LOGS
+prestashop_error_log_path: /var/log/nginx/prestashop.error.log
+prestashop_access_log_path: /var/log/nginx/prestashop.access.log

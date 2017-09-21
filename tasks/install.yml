@@ -1,0 +1,70 @@
+---
+
+- name: PrestaShop | Installing dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ prestashop_required_libs }}"
+
+- name: PrestaShop | Download PrestaShop binaries
+  get_url:
+    url: "{{ prestashop_url }}"
+    dest: "/tmp/{{ prestashop_package }}"
+  register: download_prestashop
+
+- name: PrestaShop | Create installation path
+  file:
+    path: "{{ prestashop_install_path }}"
+    state: directory
+    owner: "{{ prestashop_user }}"
+    group: "{{ prestashop_group }}"
+
+- name: PrestaShop | Extract PrestaShop in the installation path (1/2)
+  unarchive:
+    copy: no
+    src: "/tmp/{{ prestashop_package }}"
+    dest: "{{ prestashop_install_path }}"
+    owner: "{{ prestashop_user }}"
+    group: "{{ prestashop_group }}"
+  when: download_prestashop|changed
+  tags:
+    skip_ansible_lint
+
+- name: PrestaShop | Extract PrestaShop in the installation path (2/2)
+  unarchive:
+    copy: no
+    src: "{{ prestashop_install_path }}/prestashop.zip"
+    dest: "{{ prestashop_install_path }}"
+    owner: "{{ prestashop_user }}"
+    group: "{{ prestashop_group }}"
+  when: download_prestashop|changed
+  tags:
+    skip_ansible_lint
+
+- name: PrestaShop | Execute installation script
+  command: >
+    chdir={{ prestashop_install_script_path }} php {{ prestashop_install_script_file }}
+    --domain={{ prestashop_domain }}
+    --db_server={{ prestashop_db_server }}
+    --db_name={{ prestashop_db_name }}
+    --db_user={{ prestashop_db_user }}
+    --db_password={{ prestashop_db_pwd }}
+  when: download_prestashop|changed
+  tags:
+    skip_ansible_lint
+
+- name: PrestaShop | Set owner to created files
+  file:
+    dest: "{{ prestashop_install_path }}"
+    owner: "{{ prestashop_user }}"
+    group: "{{ prestashop_group }}"
+    recurse: yes
+
+- name: PrestaShop | Removing installation stuff
+  file:
+    path: "{{ prestashop_install_path }}/{{ item }}"
+    state: absent
+  with_items:
+    - "install/"
+    - "docs/"
+    - "README.md"
