@@ -11,6 +11,12 @@ prestashop_group: prestashop
 ## PATHS
 prestashop_install_path: /var/www/prestashop
 
+### BACKEND
+prestashop_default_backend_path: "{{ prestashop_install_path }}/admin"
+
+prestashop_new_backend_folder: admin123
+prestashop_new_backend_path: "{{ prestashop_install_path }}/{{ prestashop_new_backend_folder }}"
+
 ## DB
 prestashop_db_server: localhost
 prestashop_db_name: prestashop
@@ -20,6 +26,7 @@ prestashop_db_clear: 1
 prestashop_db_prefix: ps_
 prestashop_db_engine: InnoDB
 
+## INSTALL OPTIONS
 prestashop_language: en
 prestashop_timezone: Europe/paris
 prestashop_name: PrestaShop

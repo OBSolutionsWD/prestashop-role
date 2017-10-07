@@ -86,3 +86,7 @@
     - "INSTALL.txt"
     - "Install_PrestaShop.html"
     - "LICENSES"
+
+- name: PrestaShop | Move default admin folder
+  command: "mv {{ prestashop_default_backend_path }} {{ prestashop_new_backend_path }}"
+  when: download_prestashop|changed
