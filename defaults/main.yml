@@ -16,3 +16,18 @@ prestashop_db_server: localhost
 prestashop_db_name: prestashop
 prestashop_db_user: prestashop
 prestashop_db_pwd: prestashoppw
+prestashop_db_clear: 1
+prestashop_db_prefix: ps_
+prestashop_db_engine: InnoDB
+
+prestashop_language: en
+prestashop_timezone: Europe/paris
+prestashop_name: PrestaShop
+prestashop_activity: 0
+prestashop_country: fr
+prestashop_firstname: John
+prestashop_lastname: Doe
+prestashop_admin_email: pub@prestashop.com
+prestashop_admin_pwd: 0123456789
+prestashop_show_license: 0
+prestashop_newsletter: 1
