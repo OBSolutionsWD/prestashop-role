@@ -79,6 +79,10 @@
     path: "{{ prestashop_install_path }}/{{ item }}"
     state: absent
   with_items:
+    - "prestashop.zip"
     - "install/"
     - "docs/"
     - "README.md"
+    - "INSTALL.txt"
+    - "Install_PrestaShop.html"
+    - "LICENSES"
