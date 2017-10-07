@@ -9,7 +9,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - strecth
+        - stretch
   galaxy_tags:
     - prestashop
 allow_duplicates: yes
