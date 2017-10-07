@@ -44,11 +44,25 @@
 - name: PrestaShop | Execute installation script
   command: >
     chdir={{ prestashop_install_script_path }} php {{ prestashop_install_script_file }}
+    --language={{ prestashop_language }}
+    --timezone={{ prestashop_timezone }}
     --domain={{ prestashop_domain }}
     --db_server={{ prestashop_db_server }}
     --db_name={{ prestashop_db_name }}
     --db_user={{ prestashop_db_user }}
     --db_password={{ prestashop_db_pwd }}
+    --db_clear={{ prestashop_db_clear }}
+    --prefix={{ prestashop_db_prefix }}
+    --engine={{ prestashop_db_engine }}
+    --name={{ prestashop_name }}
+    --activity={{ prestashop_activity }}
+    --country={{ prestashop_country }}
+    --firstname={{ prestashop_firstname }}
+    --lastname={{ prestashop_lastname }}
+    --email={{ prestashop_admin_email }}
+    --password={{ prestashop_admin_pwd }}
+    --license={{ prestashop_show_license }}
+    --newsletter={{ prestashop_newsletter }}
   when: download_prestashop|changed
   tags:
     skip_ansible_lint
