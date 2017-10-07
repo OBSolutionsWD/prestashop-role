@@ -25,4 +25,10 @@ server {
     access_log off;
     log_not_found off;
   }
+
+  location /{{ prestashop_new_backend_folder }}/ {
+    if (!-e $request_filename) {
+        rewrite ^/.*$ /{{ prestashop_new_backend_folder }}/index.php last;
+    }
+  }
 }
